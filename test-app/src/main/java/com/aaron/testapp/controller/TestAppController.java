@@ -11,7 +11,6 @@ public class TestAppController {
     private TestAppModel testAppModel;
 
     public void setNames(String first, String last) {
-        log.info("invoking setNames() on TestAppController: " + this.toString());
         testAppModel.setFirstName(first);
         testAppModel.setLastName(last);
     }
@@ -27,7 +26,6 @@ public class TestAppController {
     @FrameworkInject
     public void setTestAppModel(TestAppModel testAppModel) {
         this.testAppModel = testAppModel;
-        log.info("set TestAppModel on TestAppController: " + this.toString() + ", " + testAppModel.toString());
     }
 
 }

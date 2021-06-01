@@ -8,16 +8,16 @@ public class FrameworkAppFactory {
     private static Logger log = LoggerFactory.getLogger(FrameworkAppFactory.class);
     private static boolean initialized;
 
-    public static Object initialize(String... packages) {
+    public static App initialize(String... packages) {
         if(initialized)
             throw new UnsupportedOperationException("Error: application has already been initialized");
         try {
             App app = new App();
-            Object o = app.scanPackages(packages);
+            app.scanPackages(packages);
             app.createBeans();
             app.injectProxies();
             app.setProxyReferences();
-            return o;
+            return app;
         } catch (Exception e) {
             log.error("", e);
         }

@@ -1,9 +1,6 @@
 package com.aaron.testapp;
 
-import com.aaron.framework.FrameworkApp;
-import com.aaron.framework.FrameworkAppFactory;
-import com.aaron.framework.FrameworkBean;
-import com.aaron.framework.FrameworkInject;
+import com.aaron.framework.*;
 import com.aaron.testapp.controller.TestAppController;
 import com.aaron.testapp.model.TestAppModel;
 import org.slf4j.Logger;
@@ -16,8 +13,16 @@ public class Main {
     private TestAppController testAppController;
 
     public static void main(String args[]) {
-        Main m = (Main) FrameworkAppFactory.initialize("com.aaron");
+        App app = FrameworkAppFactory.initialize("com.aaron");
+        Main m = app.getMain(Main.class);
         m.invoke();
+        try {
+            TestAppController testAppController = app.getBean(TestAppController.class);
+            testAppController.setNames("other", "name");
+            log.info("Name: " + testAppController.getFirstName() + " " + testAppController.getLastName());
+        } catch (NoSuchBeanException e) {
+            log.error("", e);
+        }
     }
 
     @FrameworkBean
@@ -33,11 +38,9 @@ public class Main {
     @FrameworkInject
     public void setTestAppController(TestAppController controller) {
         this.testAppController = controller;
-        log.info("set TestAppController on Main: " + this.toString() + ", " + controller.toString());
     }
 
     private void invoke() {
-        log.info("invoking invoke on Main: " + this.toString());
         testAppController.setNames("aaron", "cirillo");
         log.info("Name: " + testAppController.getFirstName() + " " + testAppController.getLastName());
     }

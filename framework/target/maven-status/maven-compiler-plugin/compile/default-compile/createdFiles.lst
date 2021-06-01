@@ -3,6 +3,7 @@ com/aaron/framework/AppScanner.class
 com/aaron/framework/FrameworkAppFactory.class
 com/aaron/framework/BasicProxy.class
 com/aaron/framework/FrameworkProxy.class
+com/aaron/framework/NoSuchBeanException.class
 com/aaron/framework/FrameworkApp.class
 com/aaron/framework/FrameworkBean.class
 com/aaron/framework/FrameworkInject.class

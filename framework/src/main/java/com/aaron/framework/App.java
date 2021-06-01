@@ -31,7 +31,18 @@ public class App {
     App() {
     };
 
-    Object scanPackages(String... packages) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public <T> T getMain(Class<T> clazz) {
+        Class main = (Class) frameworkAppAnnotatedClasses.toArray()[0];
+        return clazz.cast(beans.get(main.getName()));
+    }
+
+    public <T> T getBean(Class<T> clazz) throws NoSuchBeanException {
+        if(!proxies.containsKey(clazz.getName()))
+            throw new NoSuchBeanException("Error: requested bean not found " + clazz.getName());
+        return clazz.cast(proxies.get(clazz.getName()));
+    }
+
+    App scanPackages(String... packages) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         for(String pkg : packages) {
             if(reflectionsByPackage.containsKey(pkg))
                 continue;
@@ -62,7 +73,7 @@ public class App {
         Object o = ctor.newInstance();
         beans.put(clazz.getName(), o);
         log.info("main class " + o.toString());
-        return o;
+        return this;
     }
 
     boolean createBeans() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -122,7 +133,7 @@ public class App {
             @Override
             public Object invoke(Object self, Method overridden, Method forwarder,
                                  Object[] args) throws Throwable {
-                log.info("proxy running " + overridden.getName());
+                //log.info("proxy running " + overridden.getName());
                 return forwarder.invoke(self, args);
             }
         };

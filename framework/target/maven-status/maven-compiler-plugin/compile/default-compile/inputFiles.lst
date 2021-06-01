@@ -8,3 +8,4 @@
 /home/aaron/code/my-framework/framework/src/main/java/com/aaron/framework/FrameworkProxy.java
 /home/aaron/code/my-framework/framework/src/main/java/com/aaron/framework/FrameworkBean.java
 /home/aaron/code/my-framework/framework/src/main/java/com/aaron/framework/FrameworkAppFactory.java
+/home/aaron/code/my-framework/framework/src/main/java/com/aaron/framework/NoSuchBeanException.java
