@@ -1,0 +1,40 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Visual Studio output
+*.suo
+*/thrift-csharp/bin/
+*/thrift-csharp/obj/
+*/thrift-csharp/packages/
+
+## Maven specific items
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.flattened-pom.xml
+
+# Minion stuff
+**/service/conf/minion
+**/service/webapp/console/minion
+**/service/doc/thrift
+**/service/docker
+
+# Test output
+*/service/logs/*.log
+*/service/metrics/*.jsonl
+*/service/metrics/*.log
+*/service/metrics/*.avro
+**/thrift-csharp/src/MaxPoint
+**/thrift-csharp/*.suo
+
+valassis-mediaplanning-service-server/service/logs/*
+**/service/logs/*.log
+valassis-mediaplanning-service-server/logs/*
+resources/example_payloads/load_test/*.json
